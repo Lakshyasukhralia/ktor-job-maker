@@ -13,7 +13,7 @@ class JobManager {
             Job(
                 id = setId(),
                 title = "Food delivery",
-                description = "Deliver food to home",
+                description = "Deliver food to office",
                 categoryId = JobCategory.HOMEWORK.categoryId,
                 postedBy = 1234,
                 statusId = JobStatus.OPEN.statusId
