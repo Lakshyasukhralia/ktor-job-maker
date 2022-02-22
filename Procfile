@@ -1,1 +1,1 @@
-web: build/install/job-maker/bin/job-maker
+web: build/install/com.sukhralia.job-maker/bin/com.sukhralia.job-maker
