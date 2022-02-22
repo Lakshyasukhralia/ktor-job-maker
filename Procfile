@@ -1,0 +1,1 @@
+web: build/install/job-maker/bin/job-maker
