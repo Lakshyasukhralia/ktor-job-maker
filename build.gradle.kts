@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.sukhralia"
-version = "0.0.1"
+version = "0.0.2"
 application {
     mainClass.set("com.sukhralia.ApplicationKt")
 }
