@@ -8,9 +8,9 @@ fun Application.setupHealthRoutes() {
 
     routing {
 
-            get("/") {
-                call.respondText { "Healthy" }
-            }
+        get("/") {
+            call.respondText { "Healthy" }
+        }
 
     }
 
