@@ -3,12 +3,13 @@ package com.sukhralia.data.models
 import org.bson.codecs.pojo.annotations.BsonId
 import org.litote.kmongo.Id
 
-data class JobMongo(
+data class JobMongoModel(
     @BsonId
-    var id: Id<JobMongo>? = null,
+    var id: Id<JobMongoModel>? = null,
     var title: String,
     var categoryId: Int,
     var description: String,
     var postedBy: Long? = null,
-    var statusId: Int? = null
+    var statusId: Int? = null,
+    var dataSource: String? = "mongo"
 )

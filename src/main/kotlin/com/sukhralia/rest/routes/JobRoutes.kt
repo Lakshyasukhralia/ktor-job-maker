@@ -1,36 +1,35 @@
 package com.sukhralia.rest.routes
 
-import com.sukhralia.data.repository.JobRepository
-import com.sukhralia.rest.models.JobDto
-import com.sukhralia.rest.models.toJob
-import com.sukhralia.rest.models.toJobDto
+import com.sukhralia.domain.mapper.toJobResponseModel
+import com.sukhralia.domain.repository.abstraction.IJobDomainRepository
+import com.sukhralia.rest.models.JobRequestModel
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
-fun Application.setupJobRoutes(jobRepository: JobRepository) {
+fun Application.setupJobRoutes(jobDomainRepository: IJobDomainRepository) {
 
     routing {
 
         route("/jobs") {
 
             get("/") {
-                call.respond(jobRepository.allJobs().map { it.toJobDto() })
+                call.respond(jobDomainRepository.allJobs().map { it.toJobResponseModel() })
             }
 
             post("/") {
-                val jobDto = call.receive(JobDto::class)
-                val addedBook = jobRepository.addJob(jobDto.toJob())
-                call.respond(addedBook.toJobDto())
+                val jobRequestModel = call.receive(JobRequestModel::class)
+                val addedBook = jobDomainRepository.addJob(jobRequestModel)
+                call.respond(addedBook.toJobResponseModel())
             }
 
             put("/{id}") {
                 val id = call.parameters["id"]
-                val jobDto = call.receive(JobDto::class)
-                val updatedBook = id?.let { jobId -> jobRepository.updateJob(jobId, jobDto.toJob()) }
+                val jobRequestModel = call.receive(JobRequestModel::class)
+                val updatedBook = id?.let { jobId -> jobDomainRepository.updateJob(jobId, jobRequestModel) }
                 if (updatedBook != null) {
-                    call.respond(updatedBook.toJobDto())
+                    call.respond(updatedBook.toJobResponseModel())
                 }else{
                     call.respondText { "Job with id : $id not found" }
                 }
@@ -38,7 +37,7 @@ fun Application.setupJobRoutes(jobRepository: JobRepository) {
 
             delete("/{id}") {
                 val id = call.parameters["id"] ?: ""
-                val deletedJobId = jobRepository.deleteJob(id)
+                val deletedJobId = jobDomainRepository.deleteJob(id)
                 call.respondText { "Deleted job with id : $deletedJobId" }
             }
         }
