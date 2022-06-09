@@ -1,4 +1,4 @@
-package com.sukhralia.plugins
+package com.sukhralia.config.plugins
 
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
