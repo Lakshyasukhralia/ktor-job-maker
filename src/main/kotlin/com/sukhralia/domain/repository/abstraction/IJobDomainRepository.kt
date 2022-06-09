@@ -4,9 +4,9 @@ import com.sukhralia.domain.models.JobDomainModel
 import com.sukhralia.rest.models.JobRequestModel
 
 interface IJobDomainRepository {
-    suspend fun insertDummy()
-    suspend fun allJobs(): List<JobDomainModel>
-    suspend fun addJob(jobRequestModel: JobRequestModel): JobDomainModel
-    suspend fun updateJob(id: String, jobRequestModel: JobRequestModel): JobDomainModel?
-    suspend fun deleteJob(id: String): String?
+    suspend fun insertDummyUseCase()
+    suspend fun allJobsUseCase(): List<JobDomainModel>
+    suspend fun addJobUseCase(jobRequestModel: JobRequestModel): JobDomainModel
+    suspend fun updateJobUseCase(id: String, jobRequestModel: JobRequestModel): JobDomainModel?
+    suspend fun deleteJobUseCase(id: String): String?
 }

@@ -7,23 +7,23 @@ import com.sukhralia.domain.repository.abstraction.IJobDomainRepository
 import com.sukhralia.rest.models.JobRequestModel
 
 class JobDomainRepository(private val jobDataRepository: IJobDataRepository) : IJobDomainRepository {
-    override suspend fun insertDummy() {
+    override suspend fun insertDummyUseCase() {
         jobDataRepository.insertDummy()
     }
 
-    override suspend fun allJobs(): List<JobDomainModel> {
+    override suspend fun allJobsUseCase(): List<JobDomainModel> {
         return jobDataRepository.allJobs().map { it.toJobDomainModel() }
     }
 
-    override suspend fun addJob(jobRequestModel: JobRequestModel): JobDomainModel {
+    override suspend fun addJobUseCase(jobRequestModel: JobRequestModel): JobDomainModel {
         return jobDataRepository.addJob(jobRequestModel.toJobDomainModel()).toJobDomainModel()
     }
 
-    override suspend fun updateJob(id: String, jobRequestModel: JobRequestModel): JobDomainModel? {
+    override suspend fun updateJobUseCase(id: String, jobRequestModel: JobRequestModel): JobDomainModel? {
         return jobDataRepository.updateJob(id, jobRequestModel.toJobDomainModel())?.toJobDomainModel()
     }
 
-    override suspend fun deleteJob(id: String): String? {
+    override suspend fun deleteJobUseCase(id: String): String? {
         return jobDataRepository.deleteJob(id)
     }
 

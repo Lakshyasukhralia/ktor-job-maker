@@ -15,19 +15,19 @@ fun Application.setupJobRoutes(jobDomainRepository: IJobDomainRepository) {
         route("/jobs") {
 
             get("/") {
-                call.respond(jobDomainRepository.allJobs().map { it.toJobResponseModel() })
+                call.respond(jobDomainRepository.allJobsUseCase().map { it.toJobResponseModel() })
             }
 
             post("/") {
                 val jobRequestModel = call.receive(JobRequestModel::class)
-                val addedBook = jobDomainRepository.addJob(jobRequestModel)
+                val addedBook = jobDomainRepository.addJobUseCase(jobRequestModel)
                 call.respond(addedBook.toJobResponseModel())
             }
 
             put("/{id}") {
                 val id = call.parameters["id"]
                 val jobRequestModel = call.receive(JobRequestModel::class)
-                val updatedBook = id?.let { jobId -> jobDomainRepository.updateJob(jobId, jobRequestModel) }
+                val updatedBook = id?.let { jobId -> jobDomainRepository.updateJobUseCase(jobId, jobRequestModel) }
                 if (updatedBook != null) {
                     call.respond(updatedBook.toJobResponseModel())
                 }else{
@@ -37,7 +37,7 @@ fun Application.setupJobRoutes(jobDomainRepository: IJobDomainRepository) {
 
             delete("/{id}") {
                 val id = call.parameters["id"] ?: ""
-                val deletedJobId = jobDomainRepository.deleteJob(id)
+                val deletedJobId = jobDomainRepository.deleteJobUseCase(id)
                 call.respondText { "Deleted job with id : $deletedJobId" }
             }
         }
