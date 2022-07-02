@@ -1,6 +1,6 @@
 package com.sukhralia.config.database
 
-import com.sukhralia.data.models.JobMongoModel
+import com.sukhralia.feature.job.data.models.JobMongo
 import org.litote.kmongo.coroutine.CoroutineCollection
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.coroutine.coroutine
@@ -16,5 +16,5 @@ class JobMongoDatabase {
         database = client.getDatabase("job_maker")
     }
 
-    fun provideJobCollection(): CoroutineCollection<JobMongoModel> = database.getCollection<JobMongoModel>()
+    fun provideJobCollection(): CoroutineCollection<JobMongo> = database.getCollection<JobMongo>()
 }

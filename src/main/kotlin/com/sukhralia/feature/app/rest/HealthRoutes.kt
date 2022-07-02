@@ -1,4 +1,4 @@
-package com.sukhralia.rest.routes
+package com.sukhralia.feature.app.rest
 
 import io.ktor.server.application.*
 import io.ktor.server.response.*

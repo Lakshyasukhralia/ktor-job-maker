@@ -1,9 +1,9 @@
-package com.sukhralia.rest.models
+package com.sukhralia.feature.job.rest.models
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class JobRequestModel(
+data class JobResponse(
     var id: String? = null,
     var title: String,
     var categoryId: Int,

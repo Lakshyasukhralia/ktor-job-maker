@@ -1,4 +1,4 @@
-package com.sukhralia.enums
+package com.sukhralia.feature.job.enums
 
 enum class JobCategory(val categoryId: Int,val categoryName: String){
     DELIVERY(0,"Delivery"),
